@@ -1,5 +1,5 @@
 import React, { Component ,Fragment} from 'react';
-
+import TodoItem from "./TodoItem"
 class TodoList extends Component {
   constructor(props){
     super(props)
@@ -9,26 +9,26 @@ class TodoList extends Component {
     }
     this.hadChange=this.hadChange.bind(this);
     this.hadBtn=this.hadBtn.bind(this);
+    this.hadDelItem=this.hadDelItem.bind(this);
   };
   hadChange(e){
-    this.setState({
-      inputValue:e.target.value
-    })
+    const value=e.target.value;
+    this.setState(()=>({inputValue:value}))
   };
   hadBtn(){
-    this.setState({
-      lis:[...this.state.lis,this.state.inputValue],
+    this.setState((prevState)=>({
+      lis:[...prevState.lis,prevState.inputValue],
       inputValue:''
-    })
+    }))
   };
   hadDelItem(index){
     // immutable概念：不允许直接操作State数据
     // 复制lis数组
     const lis=[...this.state.lis];
     lis.splice(index,1);
-    this.setState({
+    this.setState(()=>({
       lis
-    })
+    }))
   }
   render() {
     return (
@@ -43,20 +43,18 @@ class TodoList extends Component {
           id="icon"/>
           <button onClick={this.hadBtn}>Ende</button>
         </div>
-        <ol>
+        <ul>
           {
-            this.state.lis.map((item,index)=>{
-              return <li key={index} 
-                onClick={this.hadDelItem.bind(this,index)} 
-                // 输入内容不被转义
-                dangerouslySetInnerHTML={{__html:item}}
-              >
-              </li>
-            })
+            this.getTodo()
           }
-        </ol>
+        </ul>
       </Fragment>
     );
+  }
+  getTodo(){
+    return this.state.lis.map((item,index)=>{
+      return  <TodoItem content={item} deleItem={this.hadDelItem} key={index} />
+    })
   }
 }
 
