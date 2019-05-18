@@ -1,5 +1,4 @@
 import React, { Component,Fragment } from 'react';
-import { tsImportEqualsDeclaration } from '@babel/types';
 
 class TodoItem extends Component {
 	constructor(props){

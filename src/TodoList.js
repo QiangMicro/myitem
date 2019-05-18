@@ -1,5 +1,7 @@
 import React, { Component ,Fragment} from 'react';
-import TodoItem from "./TodoItem"
+import TodoItem from "./TodoItem";
+import Antds from './component/Antds'
+import 'antd/dist/antd.css';
 class TodoList extends Component {
   constructor(props){
     super(props)
@@ -48,6 +50,7 @@ class TodoList extends Component {
             this.getTodo()
           }
         </ul>
+        <Antds />
       </Fragment>
     );
   }
