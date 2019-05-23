@@ -48,3 +48,4 @@
     hadChangeValue(){
       this.setState(store.getState())
     }
+  6、actionTyps.js是将所有action存到一个js文件里，方便后续因拼写出错导致查找报错原因

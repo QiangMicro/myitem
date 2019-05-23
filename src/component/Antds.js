@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import { Input,Button, List} from 'antd';
 import store from '../store/index.js'
+import {CHANGE_INPUT_VALUE ,ADD_TODO_ITEM,DELE_TODO_ITEM} from '../store/actionTyps'
 
 class Antds extends Component {
   constructor(props){
@@ -16,7 +17,7 @@ class Antds extends Component {
   hadChange(e){
     //声明一个action，它是一个函数
     const action={
-      type:"change_input_value",
+      type:CHANGE_INPUT_VALUE,
       value:e.target.value
     }
     // 将action传给store，使用store提共的dispatch(action)方法
@@ -25,7 +26,7 @@ class Antds extends Component {
   // 点击按钮声明action
   hadClick(){
     const action ={
-      type:"add_todo_item",
+      type:ADD_TODO_ITEM,
     }
     // 将action传递给store
     store.dispatch(action)
@@ -33,6 +34,14 @@ class Antds extends Component {
   changeValue(){
     // 感知到stoe发生变化后调用store.getState()
     this.setState(store.getState())
+  }
+  hadClickItem(index){
+    const action ={
+      type:DELE_TODO_ITEM,
+      index
+    }
+    // 将action传递给store
+    store.dispatch(action)
   }
   render() {
     return (
@@ -50,8 +59,10 @@ class Antds extends Component {
           style={{width:'300px',margin:"10px"}}
           bordered
           dataSource={this.state.lis}
-          renderItem={item => (
-            <List.Item>
+          renderItem={(item,index) => (
+            <List.Item 
+              onClick={this.hadClickItem.bind(this,index)}
+            >
              {item}
             </List.Item>
           )}
