@@ -54,6 +54,7 @@ class TodoList extends Component {
       </Fragment>
     );
   }
+
   getTodo(){
     return this.state.lis.map((item,index)=>{
       return  <TodoItem content={item} deleItem={this.hadDelItem} key={index} />

@@ -8,7 +8,7 @@ export default (state=defaultState,action)=>{
     if(action.type===CHANGE_INPUT_VALUE ){
         // 深拷贝
         const newState=JSON.parse(JSON.stringify(state));
-        newState.inputValue=action.value;
+        newState.inputValue=action.data;
         return newState;
     }
     if(action.type === ADD_TODO_ITEM){

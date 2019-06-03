@@ -1,7 +1,8 @@
 import React, { Component,Fragment } from 'react';
 import { Input,Button, List} from 'antd';
 import store from '../store/index.js'
-import {CHANGE_INPUT_VALUE ,ADD_TODO_ITEM,DELE_TODO_ITEM} from '../store/actionTyps'
+import {CHANGE_INPUT_VALUE ,ADD_TODO_ITEM,DELE_TODO_ITEM,INIT_AXIOS} from '../store/actionTyps'
+import Axios from 'axios';
 
 class Antds extends Component {
   constructor(props){
@@ -13,7 +14,6 @@ class Antds extends Component {
     //订阅store
     store.subscribe(this.changeValue)
   }
-
   hadChange(e){
     //声明一个action，它是一个函数
     const action={
@@ -70,6 +70,18 @@ class Antds extends Component {
       </Fragment>
     );
   }
+  componentDidMount(){
+    Axios.get('/mock.json')
+      .then((res)=>{
+        this.setState(()=>({
+          lis:[...res.data]
+        }))
+      })
+      .catch(()=>{
+        console.log("不能访问数据")
+      })
+  }
 }
 
 export default Antds;
+

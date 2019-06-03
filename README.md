@@ -95,3 +95,16 @@
 三、虚拟DOM中的Diff算法：虚拟DOM之前的对比，即同级对比与Key值对比两种方法，此方法也是说明在循环中为什么key值为什么不建议使用index值的原因
 
 四、ref:React中直接获取DOM节点（不建议使用ref）
+
+五、生命周期函数： componentWillMount()、componentDidMount()、componentWillReceiveProps()、shouldComponentUpdate()、componentWillUpdate()、componentDidUpdate()、componentWillUnmount()、render()
+
+六、Ajax放到render函数里可能会造成死循环，render函数会反复执行，默认只能放到componentDidMount()
+
+七、redux-thunk中间件：是redux的中间件
+
+总结：
+
+react性能优化：1、作用域绑定：放在constructor里做this绑定 
+              2、setState异步函数：降低虚拟Dom对比频率
+              3、同级对比、key值对比来提高虚拟DOM的对比速度
+              4、shouldComponentUpdate()无用组件render函数的运行
