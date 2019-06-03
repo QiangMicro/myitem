@@ -100,7 +100,9 @@
 
 六、Ajax放到render函数里可能会造成死循环，render函数会反复执行，默认只能放到componentDidMount()
 
-七、redux-thunk中间件：是redux的中间件
+七、异步代码拆分：
+  1、redux-thunk中间件：是redux的中间件，是action与stroe的中间件，redux-thunk中间件可以理解为是store.dispatch使用thunck进行升级，将代码拆分到action里
+  2、redux-saga中间件
 
 总结：
 
